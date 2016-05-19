@@ -86,5 +86,17 @@ void changeOrientation(int current, int new) {
 }
 
 void pathFind() {
-
+  int position = 6;
+	int x = 0;
+	int y = 0;
+	driveNavigate(&x, &y);
+	int new;
+	int current = 1;
+	while (position != 0) {
+		new = findMinNeighbour(x, y); //finds direction of min neighbour
+		changeOrientation(current, new);
+		driveNavigate(&x, &y, new);
+		position = getDist(x, y);
+		current = new;
+	}
 }
