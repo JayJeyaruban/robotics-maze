@@ -11,6 +11,11 @@ typedef struct node {
 Node maze[4][4];
 
 /*
+ * Sets initial dist values of the maze array and visited to false.
+ */
+void setupMaze();
+
+/*
  * Takes input of x and y coordinates and bool values for n/e/s/w.
  * Updates the global maze array at point x and y and gives it the values in
  * the input node.

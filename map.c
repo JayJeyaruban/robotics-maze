@@ -7,6 +7,20 @@
 #include "map.h"
 
 /*
+ * Sets initial dist values of the maze array and visited to false.
+ */
+void setupMaze() {
+  int i;
+  for (i=0; i<4; i++) {
+    int j;
+    for (j=0; j<4; j++) {
+      maze[i][j].dist = (3 - i) + (3 - j);
+      maze[i][j].visited = false;
+    }
+  }
+}
+
+/*
  * Updates node at x, y in the maze array with bool for n/e/s/w walls.
  * Then calls updateMaze to update the dist values of the current and adjacent
  * nodes.
