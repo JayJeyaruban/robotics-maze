@@ -6,8 +6,11 @@
 #include <stdbool.h>
 #include "map.h"
 
-
-// Currently takes a node pointer as input, can be changed to n/e/s/w for node.
+/*
+ * Updates node at x, y in the maze array with bool for n/e/s/w walls.
+ * Then calls updateMaze to update the dist values of the current and adjacent
+ * nodes.
+ */
 void updatePoint(int x, int y, bool north, bool east, bool south, bool west) {
   maze[x][y].dir[0] = west;
   maze[x][y].dir[1] = north;
@@ -17,6 +20,10 @@ void updatePoint(int x, int y, bool north, bool east, bool south, bool west) {
   updateMaze(x, y);
 }
 
+/*
+ * Updates the dist value at the input x, y position as well as adjacent nodes
+ * with a possible path.
+ */
 void updateMaze(int x, int y) {
   int minDist = 255;
 
@@ -52,7 +59,6 @@ void updateMaze(int x, int y) {
       }
     }
   }
-
 }
 
 int getDist(int x, int y) {
