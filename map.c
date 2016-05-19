@@ -18,12 +18,11 @@ void updatePoint(int x, int y, bool north, bool east, bool south, bool west) {
 }
 
 void updateMaze(int x, int y) {
-  int currentDist = maze[x][y].dist
   int minDist = 255;
-  
+
   int i;
   for (i=0; i<4; i++) {
-    if (maze[x][y].dir[i]) {
+    if (maze[x][y].dir[i] == true) {
       if (i == 0 && maze[x-1][y].dist < minDist) {
         minDist = maze[x-1][y].dist;
       } else if (i == 1 && maze[x][y+1].dist < minDist) {
@@ -36,13 +35,23 @@ void updateMaze(int x, int y) {
     }
   }
 
-  if (currentDist == minDist + 1) {
-
-  } else {
-    currentDist = minDist + 1;
-
+  if (maze[x][y].dist != minDist + 1) {
+    maze[x][y].dist = minDist + 1;
+    int j;
+    for (j=0; j<4; j++) {
+      if (maze[x][y].dir[j] == true) {
+        if (j == 0) {
+          updateMaze(x-1,y);
+        } else if (j == 1) {
+          updateMaze(x,y+1);
+        } else if (j == 2) {
+          updateMaze(x+1,y);
+        } else {
+          updateMaze(x,y-1);
+        }
+      }
+    }
   }
-
 
 }
 
