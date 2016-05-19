@@ -9,7 +9,7 @@ int findMinNeighbour(int x, int y) {
   int minDir = 5;
   int i;
   for (i=0; i<4; i++) {
-    if (maze[x][y].dir[i]) {
+    if (maze[x][y].dir[i] == true) {
       if (i == 0 && maze[x-1][y].dist < minDist) {
         minDist = maze[x-1][y].dist;
         minDir = i;
